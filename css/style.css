@@ -1,0 +1,336 @@
+/*===========================*/
+/*    TESTING GROUND FILE    */
+/*===========================*/
+
+/*
+  ===========================
+  BOX MODEL HACK
+  ===========================
+*/
+
+* {
+     box-sizing: border-box;
+}
+
+/*
+  ===========================
+  CLEARFIX HACK
+  ===========================
+*/
+
+.clearfix:before, .clearfix:after {
+     content: "";
+     display: block;
+     visibility: hidden;
+     line-height: 0;
+     height: 0;
+}
+
+.clearfix:after {
+     clear: both;
+}
+
+.clearfix {
+	clear: both;
+     *zoom: 1;
+}
+
+/*
+  ===========================
+  BASE STYLES
+  ===========================
+*/
+
+html {
+  font-size: 62.5%;
+}
+
+html * {
+  font-family: "Lato", sans-serif;
+  text-decoration: none;
+  color: black;
+}
+
+body {
+  height: 80vh;
+  width: 80vw;
+  margin: 0 auto;
+}
+
+.hidden {
+  display: none;
+}
+
+/*
+  ===========================
+  HEADER STYLES
+  ===========================
+*/
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid lightgray;
+}
+
+.wa-logo {
+  width: 30%;
+  min-width: 250px;
+  padding: 2.5% 5%;
+}
+
+.wa-logo img {
+  width: 100%;
+}
+
+.wa-logo a {
+  display: block;
+  height: 100%;
+  width: 100%;
+}
+
+nav {
+  width: 50%;
+  padding: 2% 0;
+}
+
+header ul {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+header ul a {
+  display: inline-block;
+  padding: 5px;
+  border-bottom: 2px solid gray;
+  font-size: 1.25rem;
+  font-weight: bold;
+  text-align: center;
+}
+
+header ul a:hover{
+  color: #f26822;
+  cursor: pointer;
+  border-bottom: 2px solid #f26822;
+}
+
+/*
+  ===========================
+  BODY STYLES - HOME PAGE
+  ===========================
+*/
+
+.site-in-progress {
+  width: 80%;
+  margin: 0 auto;
+  padding: 10% 0;
+  text-align: center;
+  font-size: 4rem;
+}
+
+.header-home {
+  justify-content: center;
+}
+
+main ul {
+  height: 100%;
+  width: 100%;
+}
+
+.btn-home {
+  display: block;
+  text-align: center;
+  width: 90%;
+  margin: 5%;
+  padding: 2.5%;
+  font-size: 3rem;
+  font-weight: bold;
+  background: #f26822;
+  color: white;
+  border-radius: 50px;
+}
+
+.btn-home:hover {
+  background: lightsalmon;
+  color: gray;
+}
+
+/*
+  ===========================
+  BODY STYLES - CALCULATOR
+  ===========================
+*/
+
+main {
+  display: flex;
+  flex-flow: row wrap;
+  width: 100%;
+}
+
+section {
+  width: 100%;
+}
+
+h1 {
+  margin: 0 auto;
+  padding: 2rem 0;
+  font-size: 3rem;
+  line-height: 4rem;
+  text-align: center;
+  border-bottom: 2px solid lightgray;
+}
+
+table {
+  width: 100%;
+}
+
+th {
+  font-size: 1.5rem;
+  font-weight: bold;
+  padding: 5% 0;
+}
+
+td {
+  font-size: 1.25rem;
+  padding: 0 0 5% 0;
+  text-align: center;
+  vertical-align: middle;
+}
+
+table input {
+  width: 50%;
+}
+
+button {
+  border-radius: 25px;
+  font-weight: bold;
+  margin: 5px;
+}
+
+.estimate-table thead th:nth-child(1) {
+  width: 25%;
+}
+
+.estimate-table thead th:nth-child(2) {
+  width: 30%;
+}
+
+.estimate-table thead th:nth-child(3) {
+  width: 20%;
+}
+
+.estimate-table thead th:nth-child(4) {
+  width: 25%;
+}
+
+.estimate-table tr.last-row {
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+}
+
+.estimate-table tr.last-row td {
+  padding: 5% 0;
+}
+
+.estimate-table td.last-row-title {
+  font-size: 1.5rem;
+  text-align: right;
+}
+
+.matrix-section {
+  margin: 5% 0;
+}
+
+caption {
+  font-size: 1.5rem;
+  font-weight: bold;
+  border: .5px solid black;
+  border-bottom: none;
+  padding: 4% 0;
+}
+
+.matrix-table {
+  margin: 5% 0;
+}
+
+.matrix-table:first-child {
+  margin: 0 0 5% 0;
+}
+
+.matrix-table:last-child {
+  margin: 5% 0 0 0;
+}
+
+.matrix-table th {
+  font-size: 1.25rem;
+  border: .5px solid black;
+  padding: 5% 0;
+}
+
+.matrix-table td {
+  border: .5px solid black;
+  padding: 3% 0;
+}
+
+@media all and (min-width: 900px) {
+  .estimate-section {
+    width: 50%;
+    margin: 0 0 3% 0;
+  }
+
+  .matrix-section {
+    width: 40%;
+    margin: 3% 5%;
+  }
+}
+
+/*
+  ===========================
+  FOOTER STYLES
+  ===========================
+*/
+
+footer {
+  background: #72634c;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-end;
+  align-items: center;
+  width: 80vw;
+}
+
+footer nav {
+  margin: 2% 5% 0 5%;
+}
+
+footer ul * {
+  color: white;
+  font-weight: bold;
+}
+
+footer ul {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+footer ul a:hover {
+  color: #f26822;
+  cursor: pointer;
+}
+
+.footer-small-text {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 90%;
+  margin: 2% 5%;
+  border-top: 1px solid white;
+}
+
+.footer-small-text small {
+  color: white;
+  padding: 5px;
+}
