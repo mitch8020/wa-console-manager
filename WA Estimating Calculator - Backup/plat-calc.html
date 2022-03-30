@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+
+<!-- 
+===========================
+  TESTING GROUND FILE 
+===========================
+-->
+
+<html lang="en">
+	<head>
+    	<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    	<meta name="description" content="Your description goes here">
+    	<meta name="keywords" content="one, two, three">
+
+		<title>W&A Estimating Calculator - PLAT</title>
+
+		<!-- external CSS link -->
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+		<link rel="stylesheet" href="css/reset.css">
+		<link rel="stylesheet" href="css/style.css">
+	</head>
+
+	<body>
+		<header>
+      <figure class="wa-logo">
+        <a href="index.html">
+            <img src="assets/wilson_logo-retina.png" alt="WA logo">
+        </a>
+      </figure>
+      <nav>
+        <ul>
+          <li><a href="bat-calc.html">BAT</a></li>
+          <li><a href="house-calc.html">HOUSE</a></li>
+          <li><a href="plat-calc.html">PLAT</a></li>
+        </ul>
+      </nav>
+		</header>
+    <h1>PLAT CALCULATOR</h1>
+    <span class="deptSpecifier hidden">PLAT</span>
+    <main>
+      <section class="estimate-section">
+        <table class="estimate-table">
+          <thead>
+            <tr class="first-row">
+              <th>PHASE NUMBER</th>
+              <th>NUMBER OF LOTS</th>
+              <th>UNIT PRICE</th>
+              <th>SUBTOTAL</th>
+            </tr>
+          </thead>
+          <tbody id="list-line-item">
+            <tr>
+              <td>PROJECT</td>
+              <td><input class="numberOfLots" type="number" value=""></td>
+              <td>$125 PER LOT</td>
+              <td>$ <strong class="subtotal">0</strong></td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr>
+              <td><button id="addLineItem" class="btn-add-line-item">+</button><button id="removeLineItem" class="btn-remove-line-item">-</button></td>
+              <td class="text-add-remove-line-item" colspan="3">[ADD / REMOVE LINE ITEM]</td>
+            </tr> 
+            <tr class="last-row">
+              <td><button id="calculatePrice">CALCULATE</button></td>
+              <td class="last-row-title" colspan="2">ESTIMATED PRICE</td>
+              <td>$ <strong id="estimatedPrice">0</strong></td>
+            </tr>
+          </tfoot>
+        </table>
+      </section>
+      <section class="matrix-section">
+        <table class="matrix-table">
+          <caption>PLATTING PRICING MATRIX</caption>
+          <thead>
+            <tr class="first-row">
+              <th>NUMBER OF LOTS</th>
+              <th colspan="2">UNIT PRICE</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>0 TO 32</td>
+              <td>$4,000 BASE PRICE</td>
+            </tr>
+            <tr>
+              <td>33 TO 100</td>
+              <td>$125 PER LOT</td>
+            </tr>
+            <tr>
+              <td>101+</td>
+              <td>$100 PER LOT</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+    </main>
+    <footer>
+      <nav>
+        <ul>
+          <li>WA CALCULATORS:</li>
+          <li><a href="bat-calc.html">BAT</a></li>
+          <li><a href="house-calc.html">HOUSE</a></li>
+          <li><a href="plat-calc.html">PLAT</a></li>
+        </ul>
+      </nav>
+      <section class="footer-small-text">
+        <small>© 2022 JP Mitra</small>
+        <small class="version-number">(BETA) Version X.XX.XX</small>
+      </section>
+    </footer>
+    
+		<script type="text/javascript" src="js/main.js"></script>
+	</body>
+</html>
