@@ -101,20 +101,19 @@ CALC ESTIMATED PRICE FUNCTION
   });
 
   function calcEstimatedPrice () {
-    
+
+    let subtotalArray = []
+
     if (deptSelect === 'BAT') {
-      createArrayFromInputs ()
-      createArrayFromSubtotals ()
-      outputSubtotals ()
+      /* BAT FUNCTIONS HERE*/
     } else if (deptSelect === 'PLAT') {
-      createArrayFromInputs ()
-      createArrayFromSubtotals ()
-      outputSubtotals ()
+      subtotalArray = createArrayFromSubtotals ()
+      outputSubtotals()
     }
 
-    let estimatedPrice = subtotalArray.reduce((partialSum, a) => partialSum + a, 0);
+    let estimatedPrice = subtotalArray.reduce((p, a) => p + a, 0);
 
-    document.querySelector('#estimatedPrice').innerText = estimatedPrice.toLocaleString()
+    document.querySelector('#estimatedPrice').innerText = estimatedPrice.toFixed(2)
   }
 
 /*
@@ -123,21 +122,15 @@ CREATE ARRAY FROM INPUTS FUNCTION
 ===========================================
 */
 
-  let arrayUnitCounts
-
   function createArrayFromInputs () {
-    
     const elem = document.getElementsByClassName("units")
-    const names = []
+    const arrayUnitCounts = []
     for (let i = 0; i < elem.length; ++i) {
       if (typeof elem[i].value !== "undefined") {
-          names.push(elem[i].value)
+          arrayUnitCounts.push(elem[i].value)
         }
       }
-
-    arrayUnitCounts = names;
     return arrayUnitCounts
-
   }
 
 /*
@@ -146,13 +139,12 @@ CREATE ARRAY FROM OUTPUTS FUNCTION
 ===========================================
 */  
 
-  let subtotalArray
-
   function createArrayFromSubtotals () {
 
-    subtotalArray = []
+    let arrayUnitCounts = createArrayFromInputs ()
+    let subtotalArray = []
 
-    arrayUnitCounts.forEach (function(units) {
+    arrayUnitCounts.forEach (units => {
       if (deptSelect === 'BAT') {
         calcBatSubtotalPrice(units)
       } else if (deptSelect === 'PLAT') {
@@ -160,9 +152,7 @@ CREATE ARRAY FROM OUTPUTS FUNCTION
       }
       subtotalArray.push(subtotal)
     })
-
     return subtotalArray
-
   }
 
 /*
@@ -173,8 +163,9 @@ OUTPUT SUBTOTALS FUNCTION
 
   function outputSubtotals () {
     
+    let subtotalArray = createArrayFromSubtotals ()
     for (let i = 1; i <= subtotalArray.length; ++i) {
-      document.querySelector(`tbody > :nth-child(${i}) .subtotal`).innerHTML = subtotalArray[i - 1].toLocaleString('en-US')
+      document.querySelector(`tbody > :nth-child(${i}) .subtotal`).innerHTML = subtotalArray[i - 1].toFixed(2)
     }
   }
 

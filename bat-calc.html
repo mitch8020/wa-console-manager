@@ -79,29 +79,21 @@
         <table class="estimate-table-bat">
           <thead>
             <tr class="first-row">
-              <th>PROJECT ITEM</th>
-              <th></th>
-              <th>UNIT PRICE</th>
+              <th colspan="2">PROJECT ITEM</th>
               <th>SUBTOTAL</th>
             </tr>
           </thead>
           <tbody id="list-line-item">
             <tr>
-              <td>BOUNDARY SURVEY</td>
-              <td></td>
-              <td>SEE PRICING MATRIX</td>
+              <td colspan="2">BOUNDARY SURVEY</td>
               <td>$ <strong class="subtotal">0</strong></td>
             </tr>
             <tr>
-              <td>ALTA/NSPS LAND TITLE SURVEY</td>
-              <td></td>
-              <td>SEE PRICING MATRIX</td>
+              <td colspan="2">ALTA/NSPS LAND TITLE SURVEY</td>
               <td>$ <strong class="subtotal">0</strong></td>
             </tr>
             <tr>
-              <td>TOPOGRAPHIC SURVEY</td>
-              <td></td>
-              <td>SEE PRICING MATRIX</td>
+              <td colspan="2">TOPOGRAPHIC SURVEY</td>
               <td>$ <strong class="subtotal">0</strong></td>
             </tr>
           </tbody>
@@ -112,7 +104,7 @@
             </tr>  -->
             <tr class="last-row">
               <td><button id="calculatePrice">CALCULATE</button></td>
-              <td class="last-row-title" colspan="2">ESTIMATED PRICE</td>
+              <td class="last-row-title">ESTIMATED PRICE</td>
               <td>$ <strong id="estimatedPrice">0</strong></td>
             </tr>
           </tfoot>
@@ -129,11 +121,11 @@
           </thead>
           <tbody>
             <tr>
-              <td>1 - 2,500</td>
-              <td>$2,500 BASE PRICE</td>
+              <td>1 - 4,500</td>
+              <td>$4,500 BASE PRICE</td>
             </tr>
             <tr>
-              <td>2,500+</td>
+              <td>4,500+</td>
               <td>$1.00 PER LF</td>
             </tr>
           </tbody>
@@ -149,7 +141,7 @@
           <tbody>
             <tr>
               <td>1 - 10,000</td>
-              <td>$2,500 BASE PRICE</td>
+              <td>$4,500 BASE PRICE</td>
             </tr>
             <tr>
               <td>10,000+</td>
@@ -180,25 +172,80 @@
             </tr>
           </tbody>
         </table>
+        <table class="matrix-table">
+          <caption>LIDAR DIFFICULTY FACTOR RATINGS</caption>
+          <thead>
+            <tr class="first-row">
+              <th>RATING</th>
+              <th>DESCRIPTION</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>ALL RURAL</td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>MOSTLY RURAL</td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td>EQUALLY RURAL AND URBAN</td>
+            </tr>
+            <tr>
+              <td>4</td>
+              <td>MOSTLY URBAN</td>
+            </tr>
+            <tr>
+              <td>5</td>
+              <td>ALL URBAN</td>
+            </tr>
+          </tbody>
+        </table>
       </section>
     </main>
     <footer>
-      <nav>
-        <ul>
-          <li>CALCULATORS:</li>
-          <li><a href="bat-calc.html">BAT</a></li>
-          <li><a href="house-calc.html">HOUSE</a></li>
-          <li><a href="plat-calc.html">PLAT</a></li>
-        </ul>
-      </nav>
+      <section class="footer-nav-links">
+        <nav>
+          <h4>CALCULATORS:</h4>
+          <ul>
+            <li><a href="bat-calc.html">BAT</a></li>
+            <li><a href="house-calc.html">HOUSE</a></li>
+            <li><a href="plat-calc.html">PLAT</a></li>
+          </ul>
+        </nav>
+        <nav>
+          <h4>FUTURE USE:</h4>
+          <ul>
+            <li><a href="bat-calc.html">BAT</a></li>
+            <li><a href="house-calc.html">HOUSE</a></li>
+            <li><a href="plat-calc.html">PLAT</a></li>
+          </ul>
+        </nav>
+        <nav>
+          <h4>FUTURE USE:</h4>
+          <ul>
+            <li><a href="bat-calc.html">BAT</a></li>
+            <li><a href="house-calc.html">HOUSE</a></li>
+            <li><a href="plat-calc.html">PLAT</a></li>
+          </ul>
+        </nav>
+        <nav>
+          <h4>FUTURE USE:</h4>
+          <ul>
+            <li><a href="bat-calc.html">BAT</a></li>
+            <li><a href="house-calc.html">HOUSE</a></li>
+            <li><a href="plat-calc.html">PLAT</a></li>
+          </ul>
+        </nav>
+      </section>
       <section class="footer-small-text">
         <small>© 2022 JP Mitra</small>
         <small class="version-number">(BETA) Version X.XX.XX</small>
       </section>
     </footer>
-    </footer>
     
 		<script type="text/javascript" src="js/main.js"></script>
 	</body>
 </html>
-<!DOCTYPE html>
