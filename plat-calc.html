@@ -47,7 +47,7 @@
         <table class="estimate-table-plat">
           <thead>
             <tr class="first-row">
-              <th>PHASE NUMBER</th>
+              <th>PROJECT</th>
               <th>NO. OF LOTS</th>
               <th>UNIT PRICE</th>
               <th>SUBTOTAL</th>
@@ -55,10 +55,10 @@
           </thead>
           <tbody id="list-line-item">
             <tr>
-              <td>PROJECT</td>
+              <td><input class="phase-num" type="text" value="PHASE 1"></td>
               <td><input class="units" type="number" value=""></td>
               <td>SEE PRICING MATRIX</td>
-              <td>$ <strong class="subtotal">0</strong></td>
+              <td>$ <strong class="subtotal">0.00</strong></td>
             </tr>
           </tbody>
           <tfoot>
@@ -69,7 +69,7 @@
             <tr class="last-row">
               <td><button id="calculatePrice">CALCULATE</button></td>
               <td class="last-row-title" colspan="2">ESTIMATED PRICE</td>
-              <td>$ <strong id="estimatedPrice">0</strong></td>
+              <td>$ <strong id="estimatedPrice">0.00</strong></td>
             </tr>
           </tfoot>
         </table>

@@ -44,12 +44,21 @@ PUBLIC VS. PRIVATE VALUES
     basePlatPrice = 4000
     tierTwoPlatPrice = 125 
     tierThreePlatPrice = 100
+    baseBoundPrice = 4500
+    tierTwoBoundPrice = 1
+    baseAltaPrice = 4500
+    tierTwoAltaPrice = .25
 
   } else if (sharingStatus === 'PUBLIC') {
 
     basePlatPrice = 640
     tierTwoPlatPrice = 20 
     tierThreePlatPrice = 10
+    baseBoundPrice = 600
+    tierTwoBoundPrice = 1
+    baseAltaPrice = 500
+    tierTwoAltaPrice = .25
+
   }
 
 /*
@@ -58,11 +67,36 @@ BAT CALCULATOR PRICING FUNCTION
 ===========================================
 */
 
-  function calcBatSubtotalPrice(units) {
+// const boundaryUnits = Number(document.querySelector('#est-boundary-lf').textContent)
+// const acreageUnits = Number(document.querySelector('#est-acreage-ac').textContent)
+// const lidarDiffFactor = Number(document.querySelector('#est-lidar-diff').textContent)
+// const lidarWeight = Number(document.querySelector('#est-lidar-weight').textContent)
+// const altaNeeded = document.querySelector('#est-alta-bool').checked
 
-    subtotal = units * 1.25
+  function calcBatSubtotalPrice(item) {
+
+    if (item === 'boundary-price') {
+      if (boundaryUnits <= 4500 && boundaryUnits > 0) {
+        subtotal = baseBoundPrice
+      } else if (boundaryUnits > 4500) {
+        subtotal = units * tierTwoBoundPrice
+      } else {
+        subtotal = 0
+      }
+    } else if (item === 'alta-price') {
+      if (altaNeeded === true) {
+        if (boundaryUnits <= 10000 && boundaryUnits > 0) {
+          subtotal = baseAltaPrice
+        } else if (boundaryUnits > 10000) {
+          subtotal = units * tierTwoAltaPrice
+        } else {
+          subtotal === 0
+        }
+      }
+    } else if (item === 'topo-price') {
+      subtotal = 0
+    }
     return subtotal
-
   }
 
 /*
@@ -121,15 +155,26 @@ CALC ESTIMATED PRICE FUNCTION
 CREATE ARRAY FROM INPUTS FUNCTION
 ===========================================
 */
+  
+  function createEstimateItemsArray () {
+    const elem = document.getElementsByClassName("est-item")
+    const quoteItems = []
+    for (let i = 0; i < elem.length; ++i) {
+      if (typeof elem[i].id !== "undefined") {
+        quoteItems.push(elem[i].id)
+      }
+    }
+    return quoteItems
+  }
 
   function createArrayFromInputs () {
     const elem = document.getElementsByClassName("units")
     const arrayUnitCounts = []
     for (let i = 0; i < elem.length; ++i) {
       if (typeof elem[i].value !== "undefined") {
-          arrayUnitCounts.push(elem[i].value)
-        }
+        arrayUnitCounts.push(elem[i].value)
       }
+    }
     return arrayUnitCounts
   }
 
@@ -142,16 +187,21 @@ CREATE ARRAY FROM OUTPUTS FUNCTION
   function createArrayFromSubtotals () {
 
     let arrayUnitCounts = createArrayFromInputs ()
+    let arrayEstimateItems = createEstimateItemsArray ()
     let subtotalArray = []
 
-    arrayUnitCounts.forEach (units => {
-      if (deptSelect === 'BAT') {
-        calcBatSubtotalPrice(units)
-      } else if (deptSelect === 'PLAT') {
+    if (deptSelect === 'BAT') {
+      arrayEstimateItems.forEach(item => {
+        calcBatSubtotalPrice(item)
+        subtotalArray.push(subtotal)
+      })
+    } else if (deptSelect === 'PLAT') {
+      arrayUnitCounts.forEach (units => {
         calcPlatSubtotalPrice(units)
+        subtotalArray.push(subtotal)
       }
-      subtotalArray.push(subtotal)
-    })
+    )}
+    console.log(subtotalArray)
     return subtotalArray
   }
 
@@ -180,7 +230,7 @@ ADD LINE ITEM FUNCTION
   function addLineItem () {
 
     let rowCount = document.getElementById('list-line-item').childElementCount
-    let newRow = `<tr><td>PROJECT</td><td><input class="units" type="number" value=""></td><td>SEE PRICING MATRIX</td><td>$ <strong class="subtotal">0</strong></td></tr>`
+    let newRow = `<tr><td><input class="phase-num" type="text" value="PHASE 1"></td><td><input class="units" type="number" value=""></td><td>SEE PRICING MATRIX</td><td>$ <strong class="subtotal">0.00</strong></td></tr>`
 
     document.querySelector('#list-line-item').innerHTML = ""
     for (i = 0; i <= rowCount; i++) {
@@ -199,7 +249,7 @@ REMOVE LINE ITEM FUNCTION
   function removeLineItem () {
 
     let rowCount = document.getElementById('list-line-item').childElementCount
-    let newRow = '<tr><td>PROJECT</td><td><input class="units" type="number" value=""></td><td>SEE PRICING MATRIX</td><td>$ <strong class="subtotal">0</strong></td></tr>'
+    let newRow = '<tr><td><input class="phase-num" type="text" value="PHASE 1"></td><td><input class="units" type="number" value=""></td><td>SEE PRICING MATRIX</td><td>$ <strong class="subtotal">0.00</strong></td></tr>'
     
     document.querySelector('#list-line-item').innerHTML = newRow
     for (i = rowCount; i > 2; i--) {
