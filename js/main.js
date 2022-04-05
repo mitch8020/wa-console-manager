@@ -46,8 +46,12 @@ PUBLIC VS. PRIVATE VALUES
     tierThreePlatPrice = 100
     baseBoundPrice = 4500
     tierTwoBoundPrice = 1
-    baseAltaPrice = 4500
+    baseAltaPrice = 3500
     tierTwoAltaPrice = .25
+    liftMin = 2500
+    liftMax = 3750
+    initLiftMin = 3750
+    initLiftMax = 4500
 
   } else if (sharingStatus === 'PUBLIC') {
 
@@ -67,36 +71,49 @@ BAT CALCULATOR PRICING FUNCTION
 ===========================================
 */
 
-// const boundaryUnits = Number(document.querySelector('#est-boundary-lf').textContent)
-// const acreageUnits = Number(document.querySelector('#est-acreage-ac').textContent)
-// const lidarDiffFactor = Number(document.querySelector('#est-lidar-diff').textContent)
-// const lidarWeight = Number(document.querySelector('#est-lidar-weight').textContent)
-// const altaNeeded = document.querySelector('#est-alta-bool').checked
+
 
   function calcBatSubtotalPrice(item) {
 
+    const boundaryUnits = document.querySelector('#est-boundary-lf').value
+    const acreageUnits = document.querySelector('#est-acreage-ac').value
+    const lidarDiffFactor = document.querySelector('#est-lidar-diff').value
+    const lidarWeight = document.querySelector('#est-lidar-weight').value
+    const boundNeeded = document.querySelector('#est-bound-bool').checked
+    const altaNeeded = document.querySelector('#est-alta-bool').checked
+    const topoNeeded = document.querySelector('#est-topo-bool').checked
+    
+    let subtotal = 0
+    let liftMultiplier = ((liftMax / liftMin) - 1) / 4 * (lidarDiffFactor - 1) + 1
+    let initLiftMultiplier = ((initLiftMax / initLiftMin) - 1) / 4 * (lidarDiffFactor - 1) + 1
+    let pricePerLift = liftMultiplier * liftMin
+    let priceInitLift = initLiftMultiplier * initLiftMin 
+    let addLifts = Math.round((acreageUnits * 43560) / (3500 * 350))
+
     if (item === 'boundary-price') {
-      if (boundaryUnits <= 4500 && boundaryUnits > 0) {
-        subtotal = baseBoundPrice
-      } else if (boundaryUnits > 4500) {
-        subtotal = units * tierTwoBoundPrice
-      } else {
-        subtotal = 0
+      if (boundNeeded === true) {
+        if (boundaryUnits <= 4500 && boundaryUnits > 0) {
+          subtotal = baseBoundPrice
+        } else if (boundaryUnits > 4500) {
+          subtotal = boundaryUnits * tierTwoBoundPrice
+        }
       }
     } else if (item === 'alta-price') {
       if (altaNeeded === true) {
-        if (boundaryUnits <= 10000 && boundaryUnits > 0) {
+        if (boundaryUnits <= 14000 && boundaryUnits > 0) {
           subtotal = baseAltaPrice
-        } else if (boundaryUnits > 10000) {
-          subtotal = units * tierTwoAltaPrice
-        } else {
-          subtotal === 0
+        } else if (boundaryUnits > 14000) {
+          subtotal = boundaryUnits * tierTwoAltaPrice
         }
       }
     } else if (item === 'topo-price') {
-      subtotal = 0
+      if (topoNeeded === true) {
+        if (acreageUnits > 0) {
+          subtotal = priceInitLift + (addLifts * pricePerLift)
+        }
+      } 
     }
-    return subtotal
+    return Math.ceil(subtotal/10) * 10
   }
 
 /*
@@ -117,7 +134,7 @@ PLAT CALCULATOR PRICING FUNCTION
       subtotal = 0
     }
 
-    return subtotal
+    return Math.ceil(subtotal/10) * 10
 
   }
 
@@ -136,18 +153,12 @@ CALC ESTIMATED PRICE FUNCTION
 
   function calcEstimatedPrice () {
 
-    let subtotalArray = []
+    let subtotalArray = createArrayFromSubtotals ()
+    outputSubtotals()
 
-    if (deptSelect === 'BAT') {
-      /* BAT FUNCTIONS HERE*/
-    } else if (deptSelect === 'PLAT') {
-      subtotalArray = createArrayFromSubtotals ()
-      outputSubtotals()
-    }
+    let estimatedPrice = subtotalArray.reduce((p, a) => p + a, 0).toFixed(2);
 
-    let estimatedPrice = subtotalArray.reduce((p, a) => p + a, 0);
-
-    document.querySelector('#estimatedPrice').innerText = estimatedPrice.toFixed(2)
+    document.querySelector('#estimatedPrice').innerText = estimatedPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   }
 
 /*
@@ -189,19 +200,19 @@ CREATE ARRAY FROM OUTPUTS FUNCTION
     let arrayUnitCounts = createArrayFromInputs ()
     let arrayEstimateItems = createEstimateItemsArray ()
     let subtotalArray = []
+    let subtotal = 0
 
     if (deptSelect === 'BAT') {
       arrayEstimateItems.forEach(item => {
-        calcBatSubtotalPrice(item)
+        subtotal = calcBatSubtotalPrice(item)
         subtotalArray.push(subtotal)
       })
     } else if (deptSelect === 'PLAT') {
       arrayUnitCounts.forEach (units => {
-        calcPlatSubtotalPrice(units)
+        subtotal = calcPlatSubtotalPrice(units)
         subtotalArray.push(subtotal)
       }
     )}
-    console.log(subtotalArray)
     return subtotalArray
   }
 
@@ -215,7 +226,7 @@ OUTPUT SUBTOTALS FUNCTION
     
     let subtotalArray = createArrayFromSubtotals ()
     for (let i = 1; i <= subtotalArray.length; ++i) {
-      document.querySelector(`tbody > :nth-child(${i}) .subtotal`).innerHTML = subtotalArray[i - 1].toFixed(2)
+      document.querySelector(`tbody > :nth-child(${i}) .subtotal`).innerHTML = subtotalArray[i - 1].toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     }
   }
 
