@@ -12,7 +12,7 @@ VERSION NUMBER
   let versionNum = ''
 
   if (sharingStatus === 'PRIVATE') {
-    versionNum = '(BETA) Version T-1.00.04'
+    versionNum = '(BETA) Version T-1.01.01'
     document.querySelector('.version-number').innerHTML = versionNum
   } else if (sharingStatus === 'PUBLIC') {
     versionNum = '(BETA) Version P-1.00.03'
