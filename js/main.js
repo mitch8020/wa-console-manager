@@ -8,7 +8,7 @@ VERSION NUMBER
 ===========================================
 */
 
-// Cory Has entered the code
+  // Cory Has entered the code
   let sharingStatus = document.querySelector(".fileSpecifier").textContent;
   let versionNum = "";
 
