@@ -11,6 +11,7 @@ VERSION NUMBER
   let sharingStatus = document.querySelector('.fileSpecifier').textContent
   let versionNum = ''
 
+  // This is a comment code
   if (sharingStatus === 'PRIVATE') {
     versionNum = '(BETA) Version T-1.01.01'
     document.querySelector('.version-number').innerHTML = versionNum
