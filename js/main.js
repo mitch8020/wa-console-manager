@@ -15,10 +15,11 @@ VERSION NUMBER
   if (sharingStatus === "PRIVATE") {
     versionNum = "(BETA) Version T-1.01.01";
     document.querySelector(".version-number").innerHTML = versionNum;
-  } else if (sharingStatus === "PUBLIC") {
-    versionNum = "(BETA) Version P-1.00.03";
-    document.querySelector(".version-number").innerHTML = versionNum;
   }
+  // } else if (sharingStatus === "PUBLIC") {
+  //   versionNum = "(BETA) Version P-1.00.03";
+  //   document.querySelector(".version-number").innerHTML = versionNum;
+  // }
 
 /*
 ===========================================
@@ -52,15 +53,15 @@ if (sharingStatus === "PRIVATE") {
   liftMax = 3750;
   initLiftMin = 3750;
   initLiftMax = 4500;
-} else if (sharingStatus === "PUBLIC") {
-  basePlatPrice = 640;
-  tierTwoPlatPrice = 20;
-  tierThreePlatPrice = 10;
-  baseBoundPrice = 600;
-  tierTwoBoundPrice = 1;
-  baseAltaPrice = 500;
-  tierTwoAltaPrice = 0.25;
-}
+} //else if (sharingStatus === "PUBLIC") {
+  // basePlatPrice = 640;
+  // tierTwoPlatPrice = 20;
+  // tierThreePlatPrice = 10;
+  // baseBoundPrice = 600;
+  // tierTwoBoundPrice = 1;
+  // baseAltaPrice = 500;
+  // tierTwoAltaPrice = 0.25;
+//}
 
 /*
 ===========================================
