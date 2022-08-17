@@ -1,5 +1,8 @@
 # wa-calculator
-Calculator App for W&amp;A
+
+## Versions & Future Functionality:
+
+Console Manager for W&amp;A
 
 Goals / Work-In-Progress:
 - Add Print to PDF Feature
